@@ -1,11 +1,12 @@
 const express = require("express");
 const env = require("dotenv");
 const app = express();
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 // routes
-const authRoutes = require("./routes/mainRouteAuth");
+const categoryRoutes = require("./routes/categoryRoutes");
+const userAuthRoutes = require("./routes/userAuthRoutes");
+const adminAuthRoutes = require("./routes/adminAuthRoutes");
 // environment variable or you can say constants
 env.config();
 
@@ -25,10 +26,11 @@ mongoose
     console.log("Database connected");
   });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use("/api", authRoutes);
+app.use("/api", categoryRoutes);
+app.use("/api", userAuthRoutes);
+app.use("/api", adminAuthRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on ${process.env.PORT} port`);
