@@ -8,6 +8,7 @@ const productRoutes = require("./routes/productRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const userAuthRoutes = require("./routes/userAuthRoutes");
 const adminAuthRoutes = require("./routes/adminAuthRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 // environment variable or you can say constants
 env.config();
 
@@ -21,6 +22,7 @@ mongoose
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      useFindAndModify: false,
     }
   )
   .then(() => {
@@ -33,6 +35,7 @@ app.use("/api", productRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", userAuthRoutes);
 app.use("/api", adminAuthRoutes);
+app.use("/api", cartRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on ${process.env.PORT} port`);

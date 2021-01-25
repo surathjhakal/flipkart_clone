@@ -42,7 +42,7 @@ exports.signin = (role) => {
             { _id: user._id, role: user.role },
             process.env.JWT_SECRET,
             {
-              expiresIn: "1h",
+              expiresIn: "1d",
             }
           );
           const { _id, firstName, lastName, email, role, fullName } = user;
@@ -81,7 +81,12 @@ exports.requireSignin = (req, res, next) => {
   next();
 };
 
-exports.userMiddleware = (req, res, next) => {};
+exports.userMiddleware = (req, res, next) => {
+  if (req.user.role !== "user") {
+    return res.status(400).json({ message: "Access denied" });
+  }
+  next();
+};
 
 exports.adminMiddleware = (req, res, next) => {
   if (req.user.role !== "admin") {
