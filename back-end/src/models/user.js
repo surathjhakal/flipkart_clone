@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
+// This is a blueprint for creating any user or admin then later we can create more users or admins as we want of it..
 const userSchema = new mongoose.Schema(
   {
     firstName: {

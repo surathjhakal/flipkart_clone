@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+
+// This is a blueprint of creating a category of many objects then later we can create objects of it..
 const categorySchema = new mongoose.Schema(
   {
     name: {

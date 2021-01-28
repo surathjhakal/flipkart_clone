@@ -1,8 +1,9 @@
 const Product = require("../models/product");
 const shortid = require("shortid");
 const slugify = require("slugify");
+
+//This function is used to create a new product
 exports.createProduct = (req, res) => {
-  // res.status(200).json({ file: req.files, body: req.body });
   const { name, price, description, category, quantity } = req.body;
   let productPictures = [];
   if (req.files.length > 0) {
@@ -11,6 +12,7 @@ exports.createProduct = (req, res) => {
     });
   }
 
+  //This thing is done for passing the body data into a schema or you can say it is creating a object of that
   const product = new Product({
     name: name,
     slug: slugify(name),
@@ -22,6 +24,7 @@ exports.createProduct = (req, res) => {
     quantity,
   });
 
+  // This thing is done for saving the data to the database
   product.save((err, product) => {
     if (err) return res.status(400).json({ err });
     if (product) {

@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+
+// This is a blueprint for creating a product so then later we can create objects of it..
 const productSchema = new mongoose.Schema(
   {
     name: {

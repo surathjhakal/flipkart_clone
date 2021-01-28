@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
+//This is used for a sign up of user or admin ,there is a parameter to pass for who do you want the sign up process
 exports.signup = (role) => {
   return function (req, res) {
     User.findOne({ email: req.body.email }).exec((err, user) => {
@@ -32,6 +33,7 @@ exports.signup = (role) => {
   };
 };
 
+//This is used for a sign in of user or admin ,there is a parameter to pass for who do you want the sign in process
 exports.signin = (role) => {
   return function (req, res) {
     User.findOne({ email: req.body.email }).exec((err, user) => {
@@ -69,6 +71,7 @@ exports.signin = (role) => {
   };
 };
 
+//This is a middleware for checking that is the user or admin logged in for doing any action related to them..
 exports.requireSignin = (req, res, next) => {
   if (req.headers.authorization) {
     const token = req.headers.authorization.split(" ")[1];
@@ -80,6 +83,9 @@ exports.requireSignin = (req, res, next) => {
   }
   next();
 };
+
+//These two middleware function is made for checking that the role is correct for their respected jobs as a example :
+// admin can not add product to cart as it does not have the permission
 
 exports.userMiddleware = (req, res, next) => {
   if (req.user.role !== "user") {

@@ -1,6 +1,7 @@
 const Category = require("../models/category");
 const slugify = require("slugify");
 
+//This function is used to get all the categories and sub categories
 const createCategories = (categories, parentId = null) => {
   const categoryList = [];
   let category;
@@ -20,6 +21,7 @@ const createCategories = (categories, parentId = null) => {
   return categoryList;
 };
 
+//This function is used to create a new category
 exports.createCategory = (req, res) => {
   const categoryObj = {
     name: req.body.name,
@@ -41,6 +43,7 @@ exports.createCategory = (req, res) => {
   });
 };
 
+//This function used for getting all the catgories present there
 exports.getCategories = (req, res) => {
   Category.find({}).exec((err, categories) => {
     if (err) return res.status(400).json({ err });

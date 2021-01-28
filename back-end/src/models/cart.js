@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+
+// This is a blueprint of adding items into the cart then later we can create objects of it..
 const cartSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },

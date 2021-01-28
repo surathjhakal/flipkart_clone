@@ -1,5 +1,5 @@
 const Cart = require("../models/cart");
-
+//This whole function is used to add item in the cart and ony user can have the access
 exports.addItemToCart = (req, res) => {
   Cart.findOne({ user: req.user._id }).exec((err, cart) => {
     if (err) return res.status(400).json({ err });

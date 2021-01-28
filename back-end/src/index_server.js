@@ -30,6 +30,9 @@ mongoose
     console.log("Database connected");
   });
 
+// In routes i have used router function which acts as a middleware which handle routes
+// but in the middle if we want, but to end the routing we use app.use function
+
 //It is a way to register middleware to end routes
 app.use(express.json());
 app.use("/public", express.static(path.join(__dirname, "uploads")));
@@ -39,7 +42,7 @@ app.use("/api", userAuthRoutes);
 app.use("/api", adminAuthRoutes);
 app.use("/api", cartRoutes);
 
-//It is listen request on some port
+//It is listening a request on some port
 app.listen(process.env.PORT, () => {
   console.log(`Server running on ${process.env.PORT} port`);
 });
