@@ -28,6 +28,10 @@ exports.createCategory = (req, res) => {
   if (req.body.parentId) {
     categoryObj.parentId = req.body.parentId;
   }
+  if (req.file) {
+    categoryObj.categoryImage =
+      process.env.API + "/public/" + req.file.filename;
+  }
   const cat = new Category(categoryObj);
   cat.save((err, category) => {
     if (err) return res.status(400).json({ err });
