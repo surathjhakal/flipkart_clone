@@ -5,7 +5,7 @@ const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
 
-// routes
+// These are the routes which we are importing
 const productRoutes = require("./routes/productRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const userAuthRoutes = require("./routes/userAuthRoutes");
